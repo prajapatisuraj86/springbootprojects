@@ -15,7 +15,7 @@ public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;
 	
-	public List<Course> getAllTopic() {
+	/*public List<Course> getAllTopic() {
 		List<Course> topics = new ArrayList<>();
 		Iterator<Course> iterator = courseRepository.findAll().iterator();
 		while(iterator.hasNext()) {
@@ -38,6 +38,6 @@ public class CourseService {
 	
 	public void deleteTopic(String id) {
 		courseRepository.delete(id);
-	}
+	}*/
 
 }

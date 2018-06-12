@@ -15,31 +15,31 @@ public class CourseController {
 	@Autowired
 	private CourseService topicService;
 	
-	@RequestMapping("/topics")
+	/*@RequestMapping("/course")
 	public List<Course> getAllTopic() {
 		return topicService.getAllTopic();
 	}
 	
-	@RequestMapping("/topics/{id}")
+	@RequestMapping("/course/{id}")
 	public Course getTopic(@PathVariable String id) {
 		return topicService.getTopic(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value = "/topics")
+	@RequestMapping(method=RequestMethod.POST, value = "/course")
 	public void addTopic(@RequestBody Course topic) {
 		topicService.addTopic(topic);
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.PUT, value = "/topics/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value = "/course/{id}")
 	public void updateTopic(@RequestBody Course topic, @PathVariable String id) {
 		topicService.updateTopic(topic, id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value = "/topics/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value = "/course/{id}")
 	public void updateTopic(@PathVariable String id) {
 		topicService.deleteTopic(id);
-	}
+	}*/
 	
 }
 
