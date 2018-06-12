@@ -24,45 +24,45 @@ public class TopicService {
 	
 	public List<Topic> getAllTopic() {
 		String strMethodName = "getAllTopic";
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Started");
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
 		
 		List<Topic> topics = new ArrayList<>();
 		Iterator<Topic> iterator = topicRepository.findAll().iterator();
 		while(iterator.hasNext()) {
 			topics.add(iterator.next());
 		}
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Ended with :"+topics);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended with :"+topics));
 		return topics;
 	}
 	
 	public Topic getTopic(String id) {
 		String strMethodName = "getTopic";
 		Topic topic = null;
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Started with Id:"+id);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with Id:"+id));
 		topic = topicRepository.findOne(id);
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Ended with :"+topic);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended with :"+topic));
 		return topic;
 	}
 	
 	public void addTopic(Topic topic) {
 		String strMethodName = "addTopic";
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Started with :"+topic);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with :"+topic));
 		topicRepository.save(topic);
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Ended");
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
 	public void updateTopic(Topic topic, String id) {
 		String strMethodName = "updateTopic";
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Started with topic :"+topic);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with topic :"+topic));
 		topicRepository.save(topic);
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Ended");
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
 	public void deleteTopic(String id) {
 		String strMethodName = "deleteTopic";
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Started with id :"+id);		
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with id :"+id));		
 		topicRepository.delete(id);
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName)+"Ended");
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 
 }
