@@ -1,7 +1,5 @@
 package com.suraj.jpaintegration.course;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.suraj.jpaintegration.topic.TopicRepository;
-import com.suraj.jpaintegration.topic.TopicService;
 import com.suraj.jpaintegration.util.CommonUtility;
 
 
