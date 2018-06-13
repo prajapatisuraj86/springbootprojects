@@ -4,40 +4,53 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.suraj.jpaintegration.topic.TopicRepository;
+import com.suraj.jpaintegration.topic.TopicService;
+import com.suraj.jpaintegration.util.CommonUtility;
 
 
 
 @Service
 public class CourseService {
 	
+	private static final String CLASSNAME = "CourseService";
+	private static final Logger logger = LogManager.getLogger(CourseService.class.getSimpleName());
+	
 	@Autowired
 	CourseRepository courseRepository;
 	
-	/*public List<Course> getAllTopic() {
-		List<Course> topics = new ArrayList<>();
-		Iterator<Course> iterator = courseRepository.findAll().iterator();
-		while(iterator.hasNext()) {
-			topics.add(iterator.next());
-		}
-		return topics;
+	@Autowired
+	TopicRepository topicRepository;
+	
+	public List<Course> getAllCourses(String topicId) {
+		return courseRepository.findByTopicId(topicId);
 	}
 	
-	public Course getTopic(String id) {
+	public Course getCourse(String id) {
 		return courseRepository.findOne(id);
 	}
 	
-	public void addTopic(Course topic) {
-		courseRepository.save(topic);
+	public void addCourse(Course course, String topicId) {
+		String strMethodName = "addCourse";
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
+		course.setTopic(topicRepository.findOne(topicId));
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Course is :"+course));
+		courseRepository.save(course);
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
-	public void updateTopic(Course topic, String id) {
-		courseRepository.save(topic);
+	public void updateCourse(Course course, String topicId) {
+		course.setTopic(topicRepository.findOne(topicId));
+		courseRepository.save(course);
 	}
 	
-	public void deleteTopic(String id) {
+	public void deleteCourse(String id) {
 		courseRepository.delete(id);
-	}*/
+	}
 
 }

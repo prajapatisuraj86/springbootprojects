@@ -13,33 +13,33 @@ import org.springframework.web.bind.annotation.RestController;
 public class CourseController {
 
 	@Autowired
-	private CourseService topicService;
+	private CourseService courseService;
 	
-	/*@RequestMapping("/course")
-	public List<Course> getAllTopic() {
-		return topicService.getAllTopic();
+	@RequestMapping("/topics/{topicId}/courses")
+	public List<Course> getAllCourses(@PathVariable("topicId") String topicId) {
+		return courseService.getAllCourses(topicId);
 	}
 	
-	@RequestMapping("/course/{id}")
-	public Course getTopic(@PathVariable String id) {
-		return topicService.getTopic(id);
+	@RequestMapping("/topics/{topicId}/courses/{id}")
+	public Course getCourse(@PathVariable("topicId") String topicId, @PathVariable("id") String id) {
+		return courseService.getCourse(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value = "/course")
-	public void addTopic(@RequestBody Course topic) {
-		topicService.addTopic(topic);
+	@RequestMapping(method=RequestMethod.POST, value = "/topics/{topicId}/courses")
+	public void addCourse(@RequestBody Course course, @PathVariable("topicId") String topicId) {
+		courseService.addCourse(course, topicId);
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.PUT, value = "/course/{id}")
-	public void updateTopic(@RequestBody Course topic, @PathVariable String id) {
-		topicService.updateTopic(topic, id);
+	@RequestMapping(method=RequestMethod.PUT, value = "/topics/{topicId}/courses")
+	public void updateCourse(@RequestBody Course course, @PathVariable("topicId") String topicId) {
+		courseService.updateCourse(course, topicId);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value = "/course/{id}")
-	public void updateTopic(@PathVariable String id) {
-		topicService.deleteTopic(id);
-	}*/
+	@RequestMapping(method=RequestMethod.DELETE, value = "topics/{topicId}/courses/{id}")
+	public void deleteCourse(@PathVariable("topicId") String topicId, @PathVariable("id") String id) {
+		courseService.deleteCourse(id);
+	}
 	
 }
 

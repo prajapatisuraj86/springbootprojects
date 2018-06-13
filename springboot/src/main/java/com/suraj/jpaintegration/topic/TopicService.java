@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.suraj.jpaintegration.util.CommonUtility;
@@ -22,6 +23,7 @@ public class TopicService {
 	@Autowired
 	TopicRepository topicRepository;
 	
+	@Cacheable(value = "topic.byId", key = "#id")
 	public List<Topic> getAllTopic() {
 		String strMethodName = "getAllTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));

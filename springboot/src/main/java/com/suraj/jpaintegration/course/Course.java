@@ -2,6 +2,9 @@ package com.suraj.jpaintegration.course;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.suraj.jpaintegration.topic.Topic;
 
 @Entity
 public class Course {
@@ -11,14 +14,18 @@ public class Course {
 	private String name;
 	private String description;
 	
+	@ManyToOne
+	private Topic topic;
+	
 	public Course() {
 	}
 	
-	public Course(String id, String name, String description) {
+	public Course(String id, String name, String description, Topic topic) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.topic = topic;
 	}
 	public String getId() {
 		return id;
@@ -38,6 +45,21 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", description=" + description + ", topic=" + topic + "]";
+	}
+	
+	
 	
 }
 
