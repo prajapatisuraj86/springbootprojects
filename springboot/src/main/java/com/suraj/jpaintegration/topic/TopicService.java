@@ -33,6 +33,7 @@ public class TopicService {
 		while(iterator.hasNext()) {
 			topics.add(iterator.next());
 		}
+		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended with :"+topics));
 		return topics;
 	}
@@ -41,7 +42,9 @@ public class TopicService {
 		String strMethodName = "getTopic";
 		Topic topic = null;
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with Id:"+id));
+		
 		topic = topicRepository.findOne(id);
+		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended with :"+topic));
 		return topic;
 	}
@@ -49,21 +52,27 @@ public class TopicService {
 	public void addTopic(Topic topic) {
 		String strMethodName = "addTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with :"+topic));
+		
 		topicRepository.save(topic);
+		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
 	public void updateTopic(Topic topic, String id) {
 		String strMethodName = "updateTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with topic :"+topic));
+		
 		topicRepository.save(topic);
+		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
 	public void deleteTopic(String id) {
 		String strMethodName = "deleteTopic";
-		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with id :"+id));		
+		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with id :"+id));
+		
 		topicRepository.delete(id);
+		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 
