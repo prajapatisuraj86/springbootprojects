@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class TopicController {
 	@Autowired
 	private TopicService topicService;
 	
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopic() {
 		String strMethodName = "getAllTopic";
@@ -58,6 +60,7 @@ public class TopicController {
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
+	@CrossOrigin(origins = {"http://localhost:4200"})
 	@RequestMapping(method=RequestMethod.DELETE, value = "/topics/{id}")
 	public void deleteTopic(@PathVariable String id) {
 		String strMethodName = "deleteTopic";
