@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suraj.jpaintegration.course.CourseController;
+import com.suraj.jpaintegration.response.CustomResponse;
 import com.suraj.jpaintegration.util.CommonUtility;
 
 @RestController
@@ -26,12 +27,12 @@ public class TopicController {
 	private TopicService topicService;
 	
 	@RequestMapping("/topics")
-	public List<Topic> getAllTopic() {
+	public CustomResponse getAllTopic() {
 		String strMethodName = "getAllTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
-		List<Topic> lstTopics = topicService.getAllTopic();
+		CustomResponse response = topicService.getAllTopic();
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
-		return lstTopics;
+		return response;
 	}
 	
 	@RequestMapping("/topics/{id}")

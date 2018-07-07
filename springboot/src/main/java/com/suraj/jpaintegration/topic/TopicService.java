@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.suraj.jpaintegration.constant.BaseConstant;
+import com.suraj.jpaintegration.response.CustomResponse;
+import com.suraj.jpaintegration.response.ResponseStatus;
 import com.suraj.jpaintegration.util.CommonUtility;
 
 
@@ -24,18 +27,33 @@ public class TopicService {
 	TopicRepository topicRepository;
 	
 	@Cacheable(value = "topic.byId", key = "#id")
-	public List<Topic> getAllTopic() {
+	public CustomResponse getAllTopic() {
 		String strMethodName = "getAllTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
-		
+
+		CustomResponse response = new CustomResponse(BaseConstant.GET_TOPIC_ERROR, null, ResponseStatus.ERROR.toString());
 		List<Topic> topics = new ArrayList<>();
-		Iterator<Topic> iterator = topicRepository.findAll().iterator();
-		while(iterator.hasNext()) {
-			topics.add(iterator.next());
+		String strMessage = BaseConstant.GET_TOPIC_ERROR;
+		boolean bError = false;
+		
+		try {
+			Iterator<Topic> iterator = topicRepository.findAll().iterator();
+			while(iterator.hasNext()) {
+				topics.add(iterator.next());
+			}
+		} catch(Exception e) {
+			bError = true;
+			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage), e.getMessage());
 		}
 		
+		if(!bError) {
+			response.setResObject(topics);
+			response.setStrMessage(BaseConstant.GET_TOPIC_SUCCESS);
+			response.setResponseStatus(ResponseStatus.SUCCESS.toString());
+		}
+
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended with :"+topics));
-		return topics;
+		return response;
 	}
 	
 	public Topic getTopic(String id) {
