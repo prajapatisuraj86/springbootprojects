@@ -31,9 +31,9 @@ public class TopicService {
 		String strMethodName = "getAllTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
 
-		CustomResponse response = new CustomResponse(BaseConstant.GET_TOPIC_ERROR, null, ResponseStatus.ERROR.toString());
-		List<Topic> topics = new ArrayList<>();
 		String strMessage = BaseConstant.GET_TOPIC_ERROR;
+		CustomResponse response = new CustomResponse(strMessage, null, ResponseStatus.ERROR.toString());
+		List<Topic> topics = new ArrayList<>();
 		boolean bError = false;
 		
 		try {
@@ -43,7 +43,7 @@ public class TopicService {
 			}
 		} catch(Exception e) {
 			bError = true;
-			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage), e.getMessage());
+			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage + " Error is : "+e.getMessage()));
 		}
 		
 		if(!bError) {
@@ -85,13 +85,28 @@ public class TopicService {
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
-	public void deleteTopic(String id) {
+	public CustomResponse deleteTopic(String id) {
 		String strMethodName = "deleteTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with id :"+id));
 		
-		topicRepository.delete(id);
+		String strMessage = BaseConstant.DELETE_TOPIC_ERROR;
+		CustomResponse response = new CustomResponse(strMessage, null, ResponseStatus.ERROR.toString());
+		boolean bError = false;
+		
+		try {
+			topicRepository.delete(id);			
+		} catch (Exception e) {
+			bError = true;
+			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage + " Error is : "+e.getMessage()));
+		}
+		
+		if(!bError) {
+			response.setStrMessage(BaseConstant.DELETE_TOPIC_SUCCESS);
+			response.setResponseStatus(ResponseStatus.SUCCESS.toString());
+		}
 		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 
 }

@@ -62,11 +62,12 @@ public class TopicController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value = "/topics/{id}")
-	public void deleteTopic(@PathVariable String id) {
+	public CustomResponse deleteTopic(@PathVariable String id) {
 		String strMethodName = "deleteTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
-		topicService.deleteTopic(id);
+		CustomResponse response = topicService.deleteTopic(id);
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 	
 }
