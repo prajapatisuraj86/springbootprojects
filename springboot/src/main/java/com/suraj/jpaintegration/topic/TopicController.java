@@ -16,6 +16,7 @@ import com.suraj.jpaintegration.course.CourseController;
 import com.suraj.jpaintegration.util.CommonUtility;
 
 @RestController
+@CrossOrigin
 public class TopicController {
 	
 	private static final String CLASSNAME = "CourseController";
@@ -24,7 +25,6 @@ public class TopicController {
 	@Autowired
 	private TopicService topicService;
 	
-	@CrossOrigin(origins = {"http://localhost:4200"})
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopic() {
 		String strMethodName = "getAllTopic";
@@ -60,7 +60,6 @@ public class TopicController {
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
 	}
 	
-	@CrossOrigin(origins = {"http://localhost:4200"})
 	@RequestMapping(method=RequestMethod.DELETE, value = "/topics/{id}")
 	public void deleteTopic(@PathVariable String id) {
 		String strMethodName = "deleteTopic";
