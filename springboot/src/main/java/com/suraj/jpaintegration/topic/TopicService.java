@@ -67,22 +67,52 @@ public class TopicService {
 		return topic;
 	}
 	
-	public void addTopic(Topic topic) {
+	public CustomResponse addTopic(Topic topic) {
 		String strMethodName = "addTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with :"+topic));
 		
-		topicRepository.save(topic);
+		String strMessage = BaseConstant.ADD_TOPIC_ERROR;
+		CustomResponse response = new CustomResponse(strMessage, null, ResponseStatus.ERROR.toString());
+		boolean bError = false;
+		
+		try {
+			topicRepository.save(topic);			
+		} catch (Exception e) {
+			bError = true;
+			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage + " Error is : "+e.getMessage()));
+		}
+		
+		if(!bError) {
+			response.setStrMessage(BaseConstant.ADD_TOPIC_SUCCESS);
+			response.setResponseStatus(ResponseStatus.SUCCESS.toString());
+		}
 		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 	
-	public void updateTopic(Topic topic, String id) {
+	public CustomResponse updateTopic(Topic topic, String id) {
 		String strMethodName = "updateTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started with topic :"+topic));
 		
-		topicRepository.save(topic);
+		String strMessage = BaseConstant.UPDATE_TOPIC_ERROR;
+		CustomResponse response = new CustomResponse(strMessage, null, ResponseStatus.ERROR.toString());
+		boolean bError = false;
+		
+		try {
+			topicRepository.save(topic);			
+		} catch (Exception e) {
+			bError = true;
+			logger.error(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, strMessage + " Error is : "+e.getMessage()));
+		}
+		
+		if(!bError) {
+			response.setStrMessage(BaseConstant.UPDATE_TOPIC_SUCCESS);
+			response.setResponseStatus(ResponseStatus.SUCCESS.toString());
+		}
 		
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 	
 	public CustomResponse deleteTopic(String id) {

@@ -43,20 +43,22 @@ public class TopicController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/topics")
-	public void addTopic(@RequestBody Topic topic) {
+	public CustomResponse addTopic(@RequestBody Topic topic) {
 		String strMethodName = "addTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
-		topicService.addTopic(topic);
+		CustomResponse response = topicService.addTopic(topic);
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 	
 	
 	@RequestMapping(method=RequestMethod.PUT, value = "/topics/{id}")
-	public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
+	public CustomResponse updateTopic(@RequestBody Topic topic, @PathVariable String id) {
 		String strMethodName = "updateTopic";
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Started"));
-		topicService.updateTopic(topic, id);
+		CustomResponse response = topicService.updateTopic(topic, id);
 		logger.info(CommonUtility.getSampleLogger(CLASSNAME, strMethodName, "Ended"));
+		return response;
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value = "/topics/{id}")
